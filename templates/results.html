@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Poll Results!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <canvas id="chart"></canvas>
+    </div>
+    <script>
+      var chart = document.getElementById('chart').getContext('2d');
+      var data_results = ['{{ results[1] }}', '{{ results[2] }}', '{{ results[3] }}', '{{ results[4] }}']
+      var color = data_results.map(x => 'lightblue')
+      color[argMax(data_results)] = 'red'
+
+      function argMax(arr){
+        var max_val = arr[0];
+        var max_index = 0;
+        for (var i = 1; i < arr.length; i++){
+          if(arr[i] > max_val){
+            max_index = i;
+          }
+        }
+        return max_index;
+      }
+      
+      var resultsChart = new Chart(chart, {
+        type:  'bar',
+         data:{
+           labels:['{{ data.fields[0] }}', '{{ data.fields[1] }}', '{{ data.fields[2] }}', '{{ data.fields[3] }}'],
+           datasets:[{
+             label: 'Number of Votes',
+             data: data_results,
+             backgroundColor: color
+           }]
+         },
+         options:{
+           title:{
+             display:true,
+             text: 'Most Favourite Author',
+             fontSize: 25
+           },
+           scales:{
+             yAxes:[{
+               ticks:{
+                 beginAtZero: true
+               }
+             }]
+           }
+         }
+      });
+    </script>
+  </body>
+</html>

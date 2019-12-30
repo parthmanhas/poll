@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Poll!</title>
+    <style>
+      h1{
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1 class="display-1">Poll</h1>
+        <h3 class="display-4">{{ data.question }}</h3>
+        <form class="" action="/poll_results" method="get">
+          {% for e in data.fields %}
+            <input type="radio" name="field" value="{{ e }}" required> {{ e }}<br>
+          {% endfor %}
+          <br>
+          <input id="vote-button" type="submit" value="Vote" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+-------------------------------------------
+---version of python == 3.7.1---
+-------------------------------------------
+Install the required packages by running the command:
+pip install -r requirements.txt
+
+Please ensure internet connectivity because Bootstrap and Chart.js CDN is used.
+
+Then run the server first by opening this directory in cmd and typing the command:
+python app.py : This will start a localhost server on 127.0.0.1:5000, where the said assignment is hosted.
